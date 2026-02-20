@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PM² Lab | Photonics and Molecular Modeling Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #003f67;
+      --teal: #00b5c8;
+      --deep-teal: #007d85;
+      --pink: #f32878;
+      --orange: #ff7a1a;
+      --gold: #ffd129;
+      --violet: #7b3fc2;
+      --paper: #f4f1ea;
+      --card: #ffffff;
+      --muted: #4b5563;
+      --line: #dfe4ea;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Space Grotesk", sans-serif;
+      color: #12202b;
+      background:
+        radial-gradient(1000px 500px at 85% -10%, rgba(0, 181, 200, 0.2), transparent 60%),
+        radial-gradient(900px 500px at 0% 100%, rgba(243, 40, 120, 0.12), transparent 60%),
+        var(--paper);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 1.3rem 0;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(244, 241, 234, 0.86);
+      border-bottom: 1px solid rgba(0, 63, 103, 0.1);
+      z-index: 20;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand img,
+    .brand svg {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: "Sora", sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      font-size: 1.1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #173246;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover { color: var(--pink); }
+
+    .hero {
+      padding: 4.2rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      animation: rise 0.8s ease-out both;
+    }
+
+    .lead {
+      color: #1f384a;
+      max-width: 62ch;
+      font-size: 1.06rem;
+      margin-bottom: 1.4rem;
+      animation: rise 0.8s 0.12s ease-out both;
+    }
+
+    .cta {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      animation: rise 0.8s 0.24s ease-out both;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.68rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      border: 2px solid transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--orange), #ff4a82);
+      color: #fff;
+    }
+
+    .btn.ghost {
+      border-color: rgba(0, 63, 103, 0.25);
+      color: var(--ink);
+    }
+
+    .logo-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      box-shadow: 0 12px 30px rgba(7, 34, 57, 0.08);
+      animation: rise 0.8s 0.3s ease-out both;
+    }
+
+    .logo-card img,
+    .logo-card svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .section {
+      margin: 2rem 0;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+    }
+
+    .section h2 {
+      font-family: "Sora", sans-serif;
+      color: var(--ink);
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 0.7rem;
+    }
+
+    .card {
+      background: #fbfcfd;
+      border: 1px solid #e7edf2;
+      border-radius: 16px;
+      padding: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1.02rem;
+      color: #0f324d;
+      margin-bottom: 0.35rem;
+    }
+
+    .card p,
+    .section p,
+    .section li {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    ul { padding-left: 1rem; }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: #476175;
+      font-size: 0.9rem;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      nav { justify-content: flex-end; }
+    }
+
+
+    .pub-container {
+      margin-top: 1rem;
+    }
+
+    .pub-year summary {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 10px 0;
+    }
+
+    .pub-cards {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+      grid-template-columns: 1fr;
+    }
+
+    .pub-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .pub-title {
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .pub-authors {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .pub-journal {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin: 6px 0;
+    }
+
+    .pub-doi {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: var(--teal);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .pub-doi:hover {
+      background: var(--deep-teal);
+    }
+
+    @media (max-width: 900px) {
+      .pub-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4f6a7d;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .sec-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: rgba(0, 181, 200, 0.15);
+      color: var(--deep-teal);
+      font-size: 0.72rem;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1rem;
+    }
+
+    .about-vision {
+      color: #1f384a;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .about-highlights {
+      list-style: disc;
+      padding-left: 1.15rem;
+      margin: 0;
+    }
+
+    .about-highlights li {
+      margin: 0.25rem 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .research-grid {
+      margin-top: 0.35rem;
+    }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(0, 181, 200, 0.14);
+      color: var(--deep-teal);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .lift-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lift-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(7, 34, 57, 0.12);
+    }
+
+    .project-card {
+      background: #fbfcfd;
+      border: 1px solid #e7edf2;
+      border-radius: 16px;
+      padding: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f324d;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-meta div {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .project-meta strong {
+      color: #173246;
+    }
+
+    .project-link {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      background: linear-gradient(90deg, var(--orange), #ff4a82);
+      color: #fff;
+    }
+
+    .team-group {
+      margin-top: 1rem;
+    }
+
+    .team-group h3 {
+      color: #0f324d;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 18px;
+      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      transition: 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .team-card img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .team-card h3 {
+      margin-bottom: 0.3rem;
+      color: #0f324d;
+      font-size: 1rem;
+    }
+
+    .team-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    .impact-link {
+      margin-top: 0.9rem;
+      display: inline-block;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 15px;
+    }
+
+    .profile-card {
+      text-decoration: none;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      transition: 0.3s;
+      color: inherit;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    }
+
+    .profile-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .facility-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .facility-box {
+      background: #fbfcfd;
+      border: 1px solid #e7edf2;
+      border-radius: 16px;
+      padding: 0.85rem;
+    }
+
+    .facility-box h3 {
+      color: #0f324d;
+      font-size: 1rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .facility-badge {
+      display: inline-block;
+      border: 1px solid rgba(0, 63, 103, 0.2);
+      background: #fff;
+      color: #1f384a;
+      border-radius: 999px;
+      padding: 0.3rem 0.58rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .about-layout,
+      .project-meta,
+      .facility-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <a class="brand" href="#home" aria-label="PM2 Lab Home">
+        <img src="assets/logo/pm2-logo.png" alt="PM2 Lab logo" />
+        <span class="brand-name">PM² Lab</span>
+      </a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#team">Team</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>Photonics and Molecular Modeling Lab</h1>
+          <p class="lead">
+            PM² Lab develops functional molecular materials using first-principles quantum chemical simulations.
+            We enable predictive design for nonlinear optical, optoelectronic, and high-energy applications.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="#research">Explore Research</a>
+            <a class="btn ghost" href="#contact">Collaborate With Us</a>
+          </div>
+        </div>
+
+        <div class="logo-card" aria-label="PM2 Lab logo">
+          <img src="assets/logo/pm2-logo.png" alt="PM2 Lab logo" />
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2><span class="sec-icon">A</span>About PM² Lab</h2>
+      <div class="about-layout">
+        <p class="about-vision">
+          PM² Lab develops functional molecular and materials systems through first-principles quantum chemical simulations. Our research enables predictive design of nonlinear optical, optoelectronic, biosensing, and high-energy materials using advanced electronic-structure methods.
+        </p>
+        <ul class="about-highlights">
+          <li>Density Functional Theory (DFT) &amp; ab initio modeling</li>
+          <li>NLO and optoelectronic materials design</li>
+          <li>Energetic materials and stability prediction</li>
+          <li>2D nanomaterials for biosensing</li>
+          <li>Gaussian, ORCA, DALTON, Multiwfn workflows</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="research" class="section">
+      <p class="section-label">What We Do</p>
+      <h2><span class="sec-icon">R</span>Core Research Areas</h2>
+      <div class="grid research-grid">
+        <article class="card feature-card lift-card">
+          <div class="feature-icon">QC</div>
+          <h3>Quantum Chemical Modeling</h3>
+          <p>DFT and ab initio simulations for accurate prediction of electronic structure, reactivity, and molecular properties.</p>
+        </article>
+        <article class="card feature-card lift-card">
+          <div class="feature-icon">NLO</div>
+          <h3>Nonlinear Optical & Optoelectronic Materials</h3>
+          <p>Theory-driven design of high-performance NLO chromophores and functional materials for photonic and optoelectronic applications.</p>
+        </article>
+        <article class="card feature-card lift-card">
+          <div class="feature-icon">HE</div>
+          <h3>High-Energy & Functional Molecular Systems</h3>
+          <p>Computational design of energetic materials and advanced molecular systems with tailored stability and performance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="sec-icon">F</span>Funded Research</h2>
+      <div class="project-card lift-card">
+        <div class="project-title">
+          Developing Novel Organic π-Conjugated Materials Using Through-Space Charge Transfer Mechanism for NLO Applications
+        </div>
+        <div class="project-meta">
+          <div><strong>Funding Agency:</strong> SERB - ANRF, India</div>
+          <div><strong>Role:</strong> Principal Investigator</div>
+          <div><strong>Amount:</strong> ₹20,89,560</div>
+          <div><strong>Status:</strong> Ongoing</div>
+        </div>
+        <a class="project-link" href="https://www.indiascienceandtechnology.gov.in/research/developing-novel-organic-%CF%80-conjugated-materials-using-through-space-charge-transfer-mechanism-nlo" target="_blank" rel="noopener noreferrer">Project Details</a>
+      </div>
+    </section>
+
+    <section id="team" class="section">
+      <h2><span class="sec-icon">T</span>Meet Our Team</h2>
+
+      <div class="team-group">
+        <h3>Principal Investigator</h3>
+        <div class="team-grid">
+          <div class="team-card">
+            <img src="assets/team/renjith.jpg" alt="Dr. Renjith R.">
+            <h3>Dr. Renjith R.</h3>
+            <p>Principal Investigator</p>
+            <p>Research Tag: PI</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-group">
+        <h3>PhD Scholars</h3>
+        <div class="team-grid">
+          <div class="team-card">
+            <img src="assets/team/aneesh.jpg" alt="Aneesh Kumar R.">
+            <h3>Aneesh Kumar R.</h3>
+            <p>PhD Scholar (Part-time)</p>
+            <p>Research Tag: PhD Scholar</p>
+          </div>
+          <div class="team-card">
+            <img src="assets/team/dhanya.jpg" alt="Dhanya P K">
+            <h3>Dhanya P K</h3>
+            <p>PhD Scholar (Part-time)</p>
+            <p>Research Tag: PhD Scholar</p>
+          </div>
+          <div class="team-card">
+            <img src="assets/team/aswathy.jpg" alt="Aswathy Soman">
+            <h3>Aswathy Soman</h3>
+            <p>PhD Scholar (Full-time)</p>
+            <p>Research Tag: PhD Scholar</p>
+          </div>
+          <div class="team-card">
+            <img src="assets/team/hridya.jpg" alt="Hridya Rajan">
+            <h3>Hridya Rajan</h3>
+            <p>PhD Scholar (Full-time)</p>
+            <p>Research Tag: PhD Scholar</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-group">
+        <h3>Project Staff</h3>
+        <div class="team-grid">
+          <div class="team-card">
+            <img src="assets/team/arjun.jpg" alt="Arjun J">
+            <h3>Arjun J</h3>
+            <p>ANRF Project Assistant</p>
+            <p>Research Tag: Project Assistant</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-group">
+        <h3>MSc Project Students</h3>
+        <div class="team-grid">
+          <div class="team-card">
+            <img src="assets/team/jency.jpg" alt="Jency">
+            <h3>Jency</h3>
+            <p>MSc Project Student</p>
+            <p>Research Tag: MSc Student</p>
+          </div>
+          <div class="team-card">
+            <img src="assets/team/anusha.jpg" alt="Anusha">
+            <h3>Anusha</h3>
+            <p>MSc Project Student</p>
+            <p>Research Tag: MSc Student</p>
+          </div>
+          <div class="team-card">
+            <img src="assets/team/vaishali.jpg" alt="Vaishali">
+            <h3>Vaishali</h3>
+            <p>MSc Project Student</p>
+            <p>Research Tag: MSc Student</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2><span class="sec-icon">M</span>Research Impact</h2>
+      <div id="scholar-stats" class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">576</div>
+          <p>Citations</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">14</div>
+          <p>h-index</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">17</div>
+          <p>i10-index</p>
+        </div>
+      </div>
+      <h3>Research Profiles</h3>
+      <div class="profile-grid">
+        <a href="https://scholar.google.co.in/citations?user=5Xrgrv4AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="profile-card">
+          <div class="profile-icon">🎓</div>
+          <h3>Google Scholar</h3>
+          <p>View publications &amp; citations</p>
+        </a>
+        <a href="http://www.scopus.com/inward/authorDetails.url?authorID=55682235700&partnerID=MN8TOARS" target="_blank" rel="noopener noreferrer" class="profile-card">
+          <div class="profile-icon">📚</div>
+          <h3>Scopus Author ID</h3>
+          <p>Track indexed publications</p>
+        </a>
+        <a href="https://orcid.org/0000-0002-0669-4045" target="_blank" rel="noopener noreferrer" class="profile-card">
+          <div class="profile-icon">🆔</div>
+          <h3>ORCID</h3>
+          <p>Persistent researcher identifier</p>
+        </a>
+        <a href="http://www.researcherid.com/rid/E-7342-2016" target="_blank" rel="noopener noreferrer" class="profile-card">
+          <div class="profile-icon">🔬</div>
+          <h3>ResearcherID</h3>
+          <p>E-7342-2016</p>
+        </a>
+      </div>
+      <a class="btn ghost impact-link" href="https://scholar.google.co.in/citations?user=5Xrgrv4AAAAJ" target="_blank" rel="noopener noreferrer">View Full Google Scholar Profile</a>
+    </section>
+
+    <section class="section">
+      <h2><span class="sec-icon">C</span>Computational Facilities</h2>
+      <div class="facility-grid">
+        <article class="facility-box lift-card">
+          <h3>Software</h3>
+          <div class="badge-list">
+            <span class="facility-badge">Gaussian</span>
+            <span class="facility-badge">ORCA</span>
+            <span class="facility-badge">DALTON</span>
+            <span class="facility-badge">AutoDock</span>
+            <span class="facility-badge">Multiwfn</span>
+            <span class="facility-badge">VMD</span>
+          </div>
+        </article>
+        <article class="facility-box lift-card">
+          <h3>Methods</h3>
+          <div class="badge-list">
+            <span class="facility-badge">DFT</span>
+            <span class="facility-badge">TD-DFT</span>
+            <span class="facility-badge">Molecular Dynamics</span>
+            <span class="facility-badge">Molecular Docking</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <h2>Selected Publications</h2>
+      <div class="pub-container">
+        <details class="pub-year" open>
+          <summary>2025</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Through-space charge transfer enabled design of nonlinear optical chromophores with balanced absorption and efficiency</div>
+              <div class="pub-authors">Arjun, J., Aneesh Kumar, R., Kaur, N., <strong>Renjith R.</strong>, Jacob, R., & Padmanaban, R</div>
+              <div class="pub-journal">Phys. Chem. Chem. Phys., 2025</div>
+              <a class="pub-doi" href="https://doi.org/10.1039/D5CP03491D" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Solvent-dependent electronic, photophysical and nonlinear optical properties of azulene-based push-pull chromophores: A DFT approach</div>
+              <div class="pub-authors">Dhanya, P. K., Arjun, J., Kaur, N., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">Journal of Molecular Graphics and Modelling, 2025</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.jmgm.2025.109180" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">DFT exploration of the solvent-dependent electronic and nonlinear optical properties of naphthyridine-stilbene dyads</div>
+              <div class="pub-authors">Dhanya, P. K., Kaur, N., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2025</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.saa.2025.126715" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Tailoring functionalized 2,3-diaza-1,3-butadienes for high-energy and insensitive applications</div>
+              <div class="pub-authors">Hridya, R., Chandran R., P., Vvayan Nair, S., <strong>Renjith R.</strong>, & Rahana, A</div>
+              <div class="pub-journal">Journal of Molecular Graphics and Modelling, 2025</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.jmgm.2025.109024" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2024</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Solvent eects and raman enhancement during the adsorption of atrazine on pristine Ag, Au, Cu and mixed clusters</div>
+              <div class="pub-authors">Aneesh, K. R., Al-Otaibi, J. S., Mary, Y., Thomas, R., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">Computational and Theoretical Chemistry, 2024</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.comptc.2024.114628" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Surface adsorption of adenine on pristine and b/n/o/p-doped coronene as a biosensing substrate for DNA detection- DFT study</div>
+              <div class="pub-authors">Aneesh Kumar, R., Jamelah Al-Otaibi, S., Sheena Mary, Y., Shyma Mary, Y., Acharjee, N., Thomas, R., <strong>Renjith R.</strong>, & Leena, T</div>
+              <div class="pub-journal">Journal of Molecular Liquids, 2024</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molliq.2023.123546" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Non-linear optical properties of 2,7-naphthyridine derivatives for optical switching applications: A DFT study</div>
+              <div class="pub-authors">Dhanya, P. K., Chandran R., P., Vvayan Nair, S., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">New J. Chem., 2024</div>
+              <a class="pub-doi" href="https://doi.org/10.1039/D3NJ04885C" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">DFT insights into the nonlinear optical properties of azulene-stilbene dyads for photonics and optoelectronics</div>
+              <div class="pub-authors">Dhanya, P. K., <strong>Renjith R.</strong>, Al-Otaibi, J. S., & Mary, Y. S</div>
+              <div class="pub-journal">Journal of Molecular Liquids, 2024</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molliq.2024.126053" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2023</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Exploring the structural, photophysical and optoelectronic properties of a diaryl heptanoid curcum derivative and identification as a SARS-CoV-2 inhibitor</div>
+              <div class="pub-authors">Archana, V. P., Armakovic, S. J., Armakovic, S., Celik, I., Bhagyasree, J., Dinesh Babu, K., Rudrapal, M., Divya, I. S., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">Journal of Molecular Structure, 2023</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2023.135110" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2022</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, molecular modeling, quantum mechanical calculations and ADME estimation studies of benzimidazole-oxadiazole derivatives as potent antifungal agents</div>
+              <div class="pub-authors">Çevik, U. A., Celik, I., Isk, A., <strong>Renjith R.</strong>, Tallei, T. E., Yadav, R., Özkay, Y., & Kaplanckl, Z. A</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2022</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2021.132095" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Synthesis and investigations of reactive properties, photophysical properties and biological activities of a pyrazole-triazole hybrid molecule</div>
+              <div class="pub-authors">Karrouchi, K., Celik, I., Fettach, S., Karthick, T., Bougrin, K., Radi, S., Faouzi, M. E. A., Ansar, M., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">Journal of Molecular Structure, 2022</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2022.133363" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Structural, spectroscopic, and in silico studies of 3-(dimethylamino)-1-(thiophen-2-yl)propan-1-ol: A potential antidepressant agent</div>
+              <div class="pub-authors">Poojith, N., Kigga, M., John Rose, J., Potla, K. M., Vankayalapati, S., Chinnam, S., Adimoole, S. P., & <strong>Renjith R.</strong></div>
+              <div class="pub-journal">Journal of Molecular Structure, 2022</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2021.131859" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2021</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">An analysis of structural, spectroscopic, quantum chemical and in silico studies of ethyl 3-[(pyridin-2-yl)amino]propanoate: A potential thrombin inhibitor</div>
+              <div class="pub-authors">Poojith, N., Rani, N. U., Potla, K. M., John Rose, J., Suchetan, P., <strong>Renjith R.</strong>, & Vankayalapati, S</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2021</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2020.129378" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Investigation of pharmaceutical importance of 2H-pyran-2-one analogues via computational approaches</div>
+              <div class="pub-authors">Shetgaonkar, S. E., Kollur, S. P., <strong>Renjith R.</strong>, Thangavel, K., Armakovic, S. J., Armakovic, S., Shivamallu, C., Amachawadi, R. G., Syed, A., Elgorban, A. M., Bahkali, A. H., & Singh, F. V</div>
+              <div class="pub-journal">Symmetry, 2021</div>
+              <a class="pub-doi" href="https://doi.org/10.3390/sym13091619" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, hirshfeld surface analysis and DFT studies of ethano-tetracyclic tetracine derivatives</div>
+              <div class="pub-authors">Sultan, M., Ghabbour, H., Soliman, S., <strong>Renjith R.</strong>, & Mansour, S. G</div>
+              <div class="pub-journal">Journal of Chemical Crystallography, 2021</div>
+              <a class="pub-doi" href="https://doi.org/10.1007/s10870-020-00841-6" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2020</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Indole moiety induced biological potency in pseudo-peptides derived from 2-amino-2-(1H-indole-2-yl) based acetamides: Chemical synthesis, in vitro anticancer activity and theoretical studies</div>
+              <div class="pub-authors">Prasad, K. S., <strong>Renjith R.</strong>, Ghimire, M. P., Ray, R., Richter, M., Shivamallu, C., Jain, A. S., Prasad, S. K., P, S., Armakovic, S., Armakovic, S. J., & Amachawadi, R. G</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2020</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2020.128445" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Tumoricidal potential of novel amino-1,10-phenanthroline derived imine ligands: Chemical preparation, structure, and biological investigations</div>
+              <div class="pub-authors">Prasad, K. S., <strong>Renjith R.</strong>, Shivamallu, C., Prasad, S. K., Jain, A. S., Pradeep, S., Armakovic, S., Armakovic, S. J., Srinivasa, C., Kallimani, S., Amachawadi, R. G., Ankegowda, V. M., Marraiki, N., Elgorban, A. M., & Syed, A</div>
+              <div class="pub-journal">Molecules, 2020</div>
+              <a class="pub-doi" href="https://doi.org/10.3390/molecules25122865" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2019</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Photophysical properties and theoretical investigations of newly synthesized pyrene-naphthalene based Schiff base ligand and its copper(II) complexes</div>
+              <div class="pub-authors">Prasad, K. S., <strong>Renjith R.</strong>, Armakovic, S., & Armakovic, S. J</div>
+              <div class="pub-journal">Inorganica Chimica Acta, 2019</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.ica.2018.11.045" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, spectroscopic characterization, reactive properties by DFT calculations, molecular dynamics simulations and biological evaluation of Schiff bases tethered 1,2,4-triazole and pyrazole rings</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Karrouchi, K., Fettach, S., Armakovic, S., Armakovic, S. J., Brik, Y., Taou k, J., Radi, S., El Abbes Faouzi, M., & Ansar, M</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2019</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2018.09.037" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2018</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Adsorption properties of graphene towards the ephedrine - a frequently used molecule in sport</div>
+              <div class="pub-authors">Armakovic, S., Armakovic, S. J., Tomic, B. T., <strong>Renjith R.</strong>, & Panicker, C. Y</div>
+              <div class="pub-journal">Computational and Theoretical Chemistry, 2018</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.comptc.2017.12.009" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Remarkable colorimetric sensing behavior of pyrazole-based chemosensor towards Cu(II) ion detection: Synthesis, characterization and theoretical investigations</div>
+              <div class="pub-authors">Nayak, N., Prasad, K. S., <strong>Renjith R.</strong>, Armakovic, S., & Armakovic, S. J</div>
+              <div class="pub-journal">RSC Adv., 2018</div>
+              <a class="pub-doi" href="https://doi.org/10.1039/C8RA02905A" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2017</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, crystal structure analysis, molecular docking studies and density functional theory predictions of the local reactive properties and degradation properties of a novel halochalcone</div>
+              <div class="pub-authors">Arshad, S., <strong>Renjith R.</strong>, Zainuri, D. A., Khalib, N. C., Razak, I. A., Armakovic, S., & Armakovic, S. J</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2017.05.052" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, crystal structure, hirshfeld surface analysis, spectroscopic characterization, reactivity study by DFT and MD approaches and molecular docking study of a novel chalcone derivative</div>
+              <div class="pub-authors">Arshad, S., <strong>Renjith R.</strong>, Zainuri, D. A., Khalib, N. C., Razak, I. A., Armakovic, S., Armakovic, S. J., Panicker, C. Y., & Van Alsenoy, C</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2017.01.080" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Renjith, R., Panicker, C. Y., & Van Alsenoy, C. Synthesis, XRD crystal structure, spectroscopic characterization, local reactive properties using DFT and molecular dynamics simulations and molecular docking study of (e)-1-(4-bromophenyl)-3-(4-(trifluoromethoxy)phenyl)prop-2-en-1-one</div>
+              <div class="pub-authors">Arshad, S., <strong>Renjith R.</strong>, Zainuri, D. A., Khalib, N. C., Razak, I. A., Armakovic, S., Armakovic, S. J</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2017.02.045" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Novel synthetic approach, spectroscopic characterization and theoretical studies on global and local reactive properties of a bibenzimidazolyl derivative</div>
+              <div class="pub-authors">Prasad, K. S., Nayak, N., <strong>Renjith R.</strong>, Armakovic, S., & Armakovic, S. J</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2017.06.073" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Vibrational spectroscopic investigations, molecular dynamic simulations and molecular docking studies of n-diphenylmethylidene-5-methyl-1h-pyrazole-3-carbohydrazide</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Menon, V. V., Mary, Y. S., Armakovic, S., Armakovic, S. J., & Panicker, C. Y</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2016.10.032" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Theoretical investigation on the reactivity and photophysical properties of cobalt(II) and manganese(II) complexes constructed using Schiff base ligands based on ALIE and tdDFT calculations</div>
+              <div class="pub-authors">Shiva Prasad, K., <strong>Renjith R.</strong>, Armakovic, S., & Armakovic, S. J</div>
+              <div class="pub-journal">Polyhedron, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.poly.2017.03.049" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, theoretical studies and molecular docking of a novel chlorinated tetracyclic: (z/e)-3-(1,8-dichloro-9,10-dihydro-9,10-ethanoanthracen-11-yl)acrylaldehyde</div>
+              <div class="pub-authors">Sultan, M. A., Almansour, A. I., <strong>Renjith R.</strong>, Kumar, R. S., Arumugam, N., Armakovic, S., Armakovic, S. J., & Soliman, S. M</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2017.08.101" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Synthesis, XRD crystal structure, spectroscopic characterization (FT-IR, 1h and 13c nmr), DFT studies, chemical reactivity and bond dissociation energy studies using molecular dynamics simulations and evaluation of antimicrobial and antioxidant activities of a novel chalcone derivative, (e)-1-(4-bromophenyl)-3-(4-iodophenyl)prop-2-en-1-one</div>
+              <div class="pub-authors">Zainuri, D. A., Arshad, S., Khalib, N. C., Razak, I. A., <strong>Renjith R.</strong>, Sulaiman, S. F., Hashim, N. S., Ooi, K. L., Armakovic, S., Armakovic, S. J., Panicker, C. Y., & Van Alsenoy, C</div>
+              <div class="pub-journal">Journal of Molecular Structure, 2017</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.molstruc.2016.09.022" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2015</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Spectroscopic investigation (FT-IR and FT-Raman), vibrational assignments, HOMO-LUMO analysis and molecular docking study of 1-hydroxy-4,5,8-tris(4-methoxyphenyl) anthraquinone</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Sheena Mary, Y., Tresa Varghese, H., Yohannan Panicker, C., Thiemann, T., Shereef, A., & Al-Saadi, A. A</div>
+              <div class="pub-journal">Journal of Physics and Chemistry of Solids, 2015</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.jpcs.2015.07.024" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+        <details class="pub-year">
+          <summary>2014</summary>
+          <div class="pub-cards">
+            <div class="pub-card">
+              <div class="pub-title">Vibrational spectroscopic and computational study of 1,7,8,9-tetrachloro-4-(4-bromo-butyl)-10,10-dimethoxy-4-aza-tricyclo[5.2.1.02,6] dec-8-ene-3,5-dione</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Mary, Y. S., Panicker, C. Y., Varghese, H. T., Pakosiska-Parys, M., Alsenoy, C., & Manojkumar, T</div>
+              <div class="pub-journal">Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2014</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.saa.2014.01.040" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Spectroscopic (FT-IR, FT-Raman) investigations and quantum chemical calculations of 1,7,8,9-tetrachloro-10,10-dimethoxy-4-3-[4-(3-methoxyphenyl)piperazin-1-yl]propyl-4- azatricyclo[5.2.1.02,6]dec-8-ene-3,5-dione</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Mary, Y. S., Panicker, C. Y., Varghese, H. T., Pakosiska-Parys, M., Van Alsenoy, C., & Al-Saadi, A. A</div>
+              <div class="pub-journal">Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2014</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.saa.2014.03.077" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Spectroscopic (FT-IR, FT-Raman), first order hyperpolarizability, NBO analysis, HOMO and LUMO analysis of 1,7,8,9-tetrachloro-10,10-dimethoxy-4-[3-(4-phenylpiperazin-1-yl)propyl]-4- azatricyclo[5.2.1.02,6]dec-8-ene-3,5-dione by density functional methods</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Mary, Y. S., Panicker, C. Y., Varghese, H. T., Pakosiska-Parys, M., Van Alsenoy, C., & Manojkumar, T</div>
+              <div class="pub-journal">Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2014</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.saa.2014.01.045" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+            <div class="pub-card">
+              <div class="pub-title">Vibrational spectra, molecular structure, NBO, HOMO-LUMO and first order hyperpolarizability analysis of 1,4-bis(4-formylphenyl)anthraquinone by density functional theory</div>
+              <div class="pub-authors"><strong>Renjith R.</strong>, Mary, Y. S., Varghese, H. T., Panicker, C. Y., Thiemann, T., & Van Alsenoy, C</div>
+              <div class="pub-journal">Spectrochimica Acta Part A: Molecular and Biomolecular Spectroscopy, 2014</div>
+              <a class="pub-doi" href="https://doi.org/10.1016/j.saa.2014.04.085" target="_blank" rel="noopener noreferrer">
+                View DOI
+              </a>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Email: drrenjith@gck.ac.in, renjithkadavoor@gmail.com</p>
+      <p>Mobile: +91 82 81 56 01 52</p>
+      <p>Location: Government College Kasaragod, Kasaragod, Kerala</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> PM² Lab. All rights reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script>
+    document.querySelectorAll(".stat-number").forEach(el => {
+      let target = +el.innerText;
+      let count = 0;
+      let step = target / 100;
+
+      function update() {
+        count += step;
+        if (count < target) {
+          el.innerText = Math.floor(count);
+          requestAnimationFrame(update);
+        } else {
+          el.innerText = target;
+        }
+      }
+
+      el.innerText = "0";
+      update();
+    });
+  </script>
+</body>
+</html>
